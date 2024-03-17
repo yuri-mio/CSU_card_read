@@ -15,7 +15,7 @@ driver.get("https://ecard.csu.edu.cn/plat-pc/login")
 
 # 从环境变量读取账号密码
 COUNT = os.environ["COUNT"]
-PWD = os.environ["PASSWORD"]
+PWD = os.environ["PWD"]
 PUSH_PLUS_TOKEN = os.environ["PUSH_PLUS_TOKEN"]
 GITHUB_TRIGGERING_ACTOR = os.environ["GITHUB_TRIGGERING_ACTOR"]
 
