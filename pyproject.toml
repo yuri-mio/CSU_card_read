@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "csu-electric-rebuild-drissionpage"
+version = "0.1.0"
+description = ""
+authors = ["dream同学0 <1399541701@qq.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = ">=3.11,<3.12"
+drissionpage = "^4.0.4.13"
+ddddocr = "^1.4.11"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -1,0 +1,42 @@
+name: "Github Action Push Daily"
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "30 00 * * *"
+
+permission:
+  contents: write
+
+jobs:
+  build:
+    name: "test setup browser"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install chromium
+        run: sudo apt-get install chromium-browser
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Run python
+        env:
+          COUNT: ${{ secrets.COUNT }}
+          PWD: ${{ secrets.PWD }}
+          PUSH_PLUS_TOKEN: ${{ secrets.PUSH_PLUS_TOKEN }}
+          GITHUB_TRIGGERING_ACTOR: ${{ github.triggering_actor }}
+        run: python main.py
+      - name: git config
+        run: |-
+          git config --global user.name "Github Actions"
+          git config --global user.email "actions@gmail.com"
+      - name: Push
+        run: |-
+          git diff
+          git add -A
+          git status
+          git commit -m "update by github actions"
+          git push
