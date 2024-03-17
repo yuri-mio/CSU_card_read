@@ -1,11 +1,13 @@
 import os
 
-from DrissionPage import ChromiumPage
+from DrissionPage import ChromiumPage, ChromiumOptions
 
 from utils import code_input, login, pushplus
 
+path = r'/usr/bin/chromium-browser'  # 请改为你电脑内Chrome可执行文件路径
+co = ChromiumOptions().set_browser_path(path)
 # 创建 driver
-driver = ChromiumPage()
+driver = ChromiumPage(co)
 driver.get("https://ecard.csu.edu.cn/plat-pc/login")
 
 # 从环境变量读取账号密码
