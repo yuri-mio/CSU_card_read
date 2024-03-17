@@ -1,11 +1,14 @@
 import os
 
-from DrissionPage import ChromiumPage, ChromiumOptions
+from DrissionPage import ChromiumOptions, ChromiumPage
 
 from utils import code_input, login, pushplus
 
-path = r'/usr/bin/chromium-browser'  # 请改为你电脑内Chrome可执行文件路径
-co = ChromiumOptions().set_browser_path(path)
+path = r"/usr/bin/chromium-browser"  # 请改为你电脑内 Chrome 可执行文件路径
+co = ChromiumOptions()
+co.set_browser_path(path)
+co.set_argument("--headless=new")
+co.set_argument("--no-sandbox")
 # 创建 driver
 driver = ChromiumPage(co)
 driver.get("https://ecard.csu.edu.cn/plat-pc/login")
