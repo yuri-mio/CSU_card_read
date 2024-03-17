@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: "30 00 * * *"
 
-permission:
+permissions:
   contents: write
 
 jobs:
