@@ -89,13 +89,13 @@ def pushplus(cost, COUNT, GITHUB_TRIGGERING_ACTOR, PUSH_PLUS_TOKEN):
         tablehead += f'| {index} | {item["datetime"]} | {item["val"]}元 |\n'
         index += 1
     text += f"## 当前余额：{cost}元\n个人信息：卡号{COUNT}\n\n统计时间：{stime}\n\n### 最近{days_to_show}天数据\n{tablehead}\n"
-    if (
-        config.getboolean("pushplus", "detail", fallback=True)
-        and GITHUB_TRIGGERING_ACTOR
-    ):
-        website = f"https://{GITHUB_TRIGGERING_ACTOR}.github.io/CSU_statistics"
-        text += f"[图表显示更多数据]({website})\n"
-        logging.info("show more details")
+    # if (
+    #     config.getboolean("pushplus", "detail", fallback=True)
+    #     and GITHUB_TRIGGERING_ACTOR
+    # ):
+    #     website = f"https://{GITHUB_TRIGGERING_ACTOR}.github.io/CSU_statistics"
+    #     text += f"[图表显示更多数据]({website})\n"
+    #     logging.info("show more details")
     with suppress():
         sendMsgToWechat(PUSH_PLUS_TOKEN, f"{stime}CSU 校卡余额统计", text, "markdown")
         logging.info("push plus executed successfully")
