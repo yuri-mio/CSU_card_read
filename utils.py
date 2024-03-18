@@ -33,6 +33,13 @@ def code_input(driver):
     code_input.input(catch)
 
 
+def code_clear(driver):
+    code_input = driver.ele(
+        "css:#pane-sno > div.el-form-item.captcha > div > div.el-input.el-input--suffix > input"
+    )
+    code_input.clear()
+
+
 def login(driver):
     login_button = driver.ele("@type=button")
     login_button.click()

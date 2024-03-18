@@ -2,13 +2,14 @@ import os
 
 from DrissionPage import ChromiumOptions, ChromiumPage
 
-from utils import code_input, login, pushplus
-
-path = r"/usr/bin/chromium-browser"  # 请改为你电脑内 Chrome 可执行文件路径
+from utils import code_input, login, pushplus, code_clear
+import time
+# path = r"/usr/bin/chromium-browser"  # 请改为你电脑内 Chrome 可执行文件路径
+path = "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"
 co = ChromiumOptions()
 co.set_browser_path(path)
-co.set_argument("--headless=new")
-co.set_argument("--no-sandbox")
+# co.set_argument("--headless=new")
+# co.set_argument("--no-sandbox")
 # 创建 driver
 driver = ChromiumPage(co)
 driver.get("https://ecard.csu.edu.cn/plat-pc/login")
@@ -30,6 +31,15 @@ pwd_input.input("121517")
 code_input(driver)
 login(driver)
 
+while True:
+    time.sleep(1)
+    error_message = driver.ele(".el-message__content")
+    if error_message:
+      code_clear(driver)
+      code_input(driver)
+      login(driver)
+    else: 
+      break
 
 card_body = driver.ele("css:#cardService > div > div:nth-child(1) > div > div > div")
 card_body.click()
